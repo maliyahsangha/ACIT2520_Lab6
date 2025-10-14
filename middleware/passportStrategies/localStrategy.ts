@@ -30,7 +30,7 @@ declare global {
   }
 }
 
-passport.serializeUser(function (user, done) {
+passport.serializeUser(function (user: Express.User, done: (arg0: null, arg1: any) => void) {
   done(null, user.id);
 });
 
