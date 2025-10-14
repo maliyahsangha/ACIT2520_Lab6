@@ -5,8 +5,9 @@ import PassportConfig from "./PassportConfig";
 import localStrategy from "./passportStrategies/localStrategy";
 import passportGitHubStrategy from "./passportStrategies/githubStrategy";
 
-new PassportConfig([localStrategy, passportGitHubStrategy]);
-// passportConfig.addStrategies([localStrategy, passportGitHubStrategy]);
+// No need to actually pass the instance of passport since it returns a singleton
+const passportConfig = new PassportConfig([localStrategy]);
+//passportConfig.addStrategies([localStrategy, passportGitHubStrategy ]);
 const passportMiddleware = (app: Application): void => {
   app.use(passport.initialize());
   app.use(passport.session());
