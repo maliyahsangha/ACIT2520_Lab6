@@ -18,20 +18,8 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-// type declaration
-declare global {
-  namespace Express {
-    interface User {
-      id: number;
-      name: string;
-      email: string;
-      password: string;
-    }
-  }
-}
-
 passport.serializeUser(function (user: Express.User, done) {
-  done(null, user.id);
+  done(null, (user as { id: number }).id);
 });
 
 
