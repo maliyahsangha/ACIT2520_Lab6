@@ -1,7 +1,7 @@
 import {userModel} from "../models/userModel";
 
 const getUserByEmailIdAndPassword = (email: string, password: string) => {
-  let user = userModel.findOne(email);
+  let user = userModel.findOne(undefined, email);
   if (user) {
     if (isUserValid(user, password)) {
       return user;
