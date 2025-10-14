@@ -10,7 +10,10 @@ const githubStrategy: GitHubStrategy = new GitHubStrategy(
         passReqToCallback: true,
     },
     
-    async (req: Request, accessToken: string, refreshToken: string, profile: Profile, done: (err: any) => void) => {},
+    // FIX ME
+    async (req: Request, accessToken: string, refreshToken: string, profile: Profile, done: (err: any, user?: Express.User) => void) => {
+        done(null, profile);
+    },
 );
 
 const passportGitHubStrategy: PassportStrategy = {
