@@ -18,17 +18,24 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-/*
-FIX ME (types) 😭
-*/
-passport.serializeUser(function (user: any, done: any) {
+// type declaration
+declare global {
+  namespace Express {
+    interface User {
+      id: number;
+      name: string;
+      email: string;
+      password: string;
+    }
+  }
+}
+
+passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 
-/*
-FIX ME (types) 😭
-*/
-passport.deserializeUser(function (id: any, done: any) {
+
+passport.deserializeUser(function (id: number, done) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
